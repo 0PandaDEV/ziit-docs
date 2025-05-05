@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 import { metadataImage } from "@/lib/metadata";
 import { ImageResponse } from "next/og";
 
