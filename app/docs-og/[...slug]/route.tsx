@@ -26,7 +26,9 @@ export const GET = metadataImage.createAPI(async (page) => {
         <img
           width="48"
           height="48"
-          src="/logo.svg"
+          src={`${process.env.CF_PAGES_URL ? `https://${process.env.CF_PAGES_URL}`
+            : process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
+          }/logo.svg`}
           alt='Logo'
         />
         <div
