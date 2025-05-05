@@ -4,13 +4,22 @@ description: Welcome to Ziit's documentation
 icon: BookOpen
 ---
 
-import { BookIcon } from "lucide-react";
+import MdiDocker from '~icons/mdi/docker';
+import MdiGithub from '~icons/mdi/github';
 
-Welcome to the docs! You can start writing documents in `/content/docs`.
+Welcome to **Ziit's Documentation** Here, you'll find everything you need to get started with self-hosting or improve your experience. Find out how Ziit will make your code time tracking much more controlled, private and customizable.
 
-## What is Next?
-
-<Cards>
-  <Card title="Learn more about Next.js" href="https://nextjs.org/docs" />
-  <Card title="Learn more about Fumadocs" href="https://fumadocs.vercel.app" />
+<Cards cols={2}>
+  <Card 
+    icon={<MdiGithub />} 
+    title="Github OAuth App" 
+    href="/deploy/github-oauth-app" 
+    description="Create a Github OAuth App" 
+  />
+  <Card 
+    icon={<MdiDocker />} 
+    title="Docker Compose" 
+    href="/deploy/docker-compose" 
+    description="Deploy Ziit with docker compose" 
+  />
 </Cards>

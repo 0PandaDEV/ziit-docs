@@ -1,7 +1,21 @@
 ---
 title: Github OAuth App
 description: How to create a Github OAuth App
-icon: Github
+icon: MdiGithub
 ---
 
-import { Github } from "lucide-react";
+To enable GitHub authentication for Ziit, you need to create a GitHub OAuth App:
+
+1. **Go to GitHub Developer Settings:**
+   Navigate to [GitHub Developer Settings](https://github.com/settings/developers) and click on "New OAuth App"
+
+2. **Register Your OAuth App:**
+
+   - Application name: Ziit (or your preferred name)
+   - Homepage URL: Your Ziit instance URL (e.g., https://ziit.example.com)
+   - Authorization callback URL: Your callback URL (e.g., https://ziit.example.com/api/auth/github/callback)
+
+3. **Get Your Credentials:**
+   After registration, you'll receive a Client ID and can generate a Client Secret
+   - Save these values for your Ziit configuration
+   - Note: Keep your Client Secret secure and never expose it publicly
