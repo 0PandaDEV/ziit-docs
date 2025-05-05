@@ -65,7 +65,3 @@ export const GET = metadataImage.createAPI(async (page) => {
     }
   );
 });
-
-export function generateStaticParams() {
-  return metadataImage.generateParams();
-}
