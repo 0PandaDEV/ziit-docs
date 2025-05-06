@@ -18,9 +18,9 @@ export const source = loader({
 });
 
 export const openapi = createOpenAPI({
-  // Path to the OpenAPI schema relative to the public directory
-  definition: "./public/ziit.json",
   generateCodeSamples(endpoint) {
+    const path = (endpoint as any).path || "";
+
     return [
       {
         lang: "js",
@@ -28,10 +28,28 @@ export const openapi = createOpenAPI({
         source: `import { fetch } from "ofetch";
 
 // Replace the endpoint URL with the actual path from your API
-const response = await fetch("https://ziit.app/api/endpoint", {
+const response = await fetch("https://ziit.app${path}", {
   method: "${endpoint.method.toUpperCase()}",
   ${endpoint.method.toLowerCase() !== "get" ? "body: { /* your data here */ }," : ""}
 });`,
+      },
+      {
+        lang: "curl",
+        label: "cURL",
+        source: false,
+      },
+      {
+        lang: "python",
+        label: "Python",
+        source: `import requests
+
+response = requests.${endpoint.method.toLowerCase()}("https://ziit.app${path}"${
+          endpoint.method.toLowerCase() !== "get"
+            ? `, 
+  json={"your": "data"}`
+            : ""
+        })
+print(response.json())`,
       },
     ];
   },

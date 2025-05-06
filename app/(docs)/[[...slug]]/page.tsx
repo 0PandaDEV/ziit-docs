@@ -1,4 +1,4 @@
-import { source } from "@/lib/source";
+import { source, openapi } from "@/lib/source";
 import {
   DocsPage,
   DocsBody,
@@ -10,6 +10,7 @@ import defaultMdxComponents, { createRelativeLink } from "fumadocs-ui/mdx";
 import { ImageZoom } from "fumadocs-ui/components/image-zoom";
 import { CodeBlock, Pre } from "fumadocs-ui/components/codeblock";
 import { metadataImage } from "@/lib/metadata";
+import { APIPage } from "fumadocs-openapi/ui";
 
 export default async function Page(props: {
   params: Promise<{ slug?: string[] }>;
@@ -37,6 +38,7 @@ export default async function Page(props: {
                 <Pre>{props.children}</Pre>
               </CodeBlock>
             ),
+            APIPage: (props) => <APIPage {...openapi.getAPIPageProps(props)} />,
           }}
         />
       </DocsBody>
