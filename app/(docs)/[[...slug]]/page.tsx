@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 import { source } from "@/lib/source";
 import {
   DocsPage,
@@ -42,10 +43,6 @@ export default async function Page(props: {
       </DocsBody>
     </DocsPage>
   );
-}
-
-export async function generateStaticParams() {
-  return source.generateParams();
 }
 
 export async function generateMetadata(props: {
