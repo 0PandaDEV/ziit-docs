@@ -12,10 +12,6 @@ const mdxConfig = withMDX(baseConfig);
 
 const finalConfig = {
   ...mdxConfig,
-  experimental: {
-    runtime: 'edge',
-    serverComponentsExternalPackages: [],
-  },
   webpack(config, options) {
     if (typeof mdxConfig.webpack === "function") {
       config = mdxConfig.webpack(config, options);
