@@ -8,9 +8,6 @@
     "start": "next start",
     "postinstall": "fumadocs-mdx"
   },
-  "engines": {
-    "node": ">=18.17.1"
-  },
   "dependencies": {
     "ajv": "^8.17.1",
     "fumadocs-core": "15.2.15",
