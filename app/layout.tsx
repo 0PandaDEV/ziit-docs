@@ -23,7 +23,8 @@ export default function Layout({ children }: { children: ReactNode }) {
             options: {
               type: "static",
             },
-          }}>
+          }}
+          theme={{ defaultTheme: "dark" }}>
           {children}
         </RootProvider>
       </body>
