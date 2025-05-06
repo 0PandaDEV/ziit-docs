@@ -1,4 +1,8 @@
 {
   "name": "Deploy",
-  "icon": "Container"
+  "icon": "Container",
+  "pages": [
+    "github-oauth-app",
+    "docker-compose"
+  ]
 }

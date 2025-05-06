@@ -4,13 +4,11 @@
   "pages": [
     "---Introduction---",
     "index",
-    "faq",
-    "security",
-    "benchmarks",
     "---Getting Started---",
-    "...",
+    "deploy",
+    "extensions",
+    "wakatime",
     "---Developers---",
-    "contribute",
-    "themes-store"
+    "api"
   ]
 }

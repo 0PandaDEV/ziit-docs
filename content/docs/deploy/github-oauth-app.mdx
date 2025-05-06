@@ -1,21 +1,57 @@
 ---
 title: Github OAuth App
 description: How to create a Github OAuth App
-icon: MdiGithub
 ---
 
-To enable GitHub authentication for Ziit, you need to create a GitHub OAuth App:
+<Callout>
+  To enable GitHub authentication for Ziit, you need to create a GitHub OAuth App.
+</Callout>
 
-1. **Go to GitHub Developer Settings:**
-   Navigate to [GitHub Developer Settings](https://github.com/settings/developers) and click on "New OAuth App"
+## Setup Instructions
 
-2. **Register Your OAuth App:**
+### Step 1: Go to GitHub Developer Settings
 
-   - Application name: Ziit (or your preferred name)
-   - Homepage URL: Your Ziit instance URL (e.g., https://ziit.example.com)
-   - Authorization callback URL: Your callback URL (e.g., https://ziit.example.com/api/auth/github/callback)
+Navigate to [GitHub Developer Settings](https://github.com/settings/developers) and click on "New OAuth App"
 
-3. **Get Your Credentials:**
-   After registration, you'll receive a Client ID and can generate a Client Secret
-   - Save these values for your Ziit configuration
-   - Note: Keep your Client Secret secure and never expose it publicly
+<Cards>
+  <Card 
+    title="GitHub Developer Settings" 
+    href="https://github.com/settings/developers"
+  >
+    Open GitHub Developer Settings
+  </Card>
+</Cards>
+
+---
+
+### Step 2: Register Your OAuth App
+
+Fill in the required fields:
+
+| Field | Value |
+|-------|-------|
+| Application name | Ziit (or your preferred name) |
+| Homepage URL | Your Ziit instance URL (e.g., https://ziit.example.com) |
+| Authorization callback URL | Your callback URL (e.g., https://ziit.example.com/api/auth/github/callback) |
+
+<Callout type="info" title="Callback URL Format">
+  Make sure your callback URL matches exactly with your Ziit instance domain, followed by `/api/auth/github/callback`
+</Callout>
+
+---
+
+### Step 3: Get Your Credentials
+
+After registration, you'll receive a Client ID and can generate a Client Secret:
+
+- Save these values for your Ziit configuration
+- **Important**: Keep your Client Secret secure and never expose it publicly
+
+<Cards>
+  <Card 
+    title="Docker Compose Setup" 
+    href="./docker-compose"
+  >
+    Continue to Docker Compose deployment
+  </Card>
+</Cards>

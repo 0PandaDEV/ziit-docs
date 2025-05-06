@@ -4,22 +4,27 @@ description: Welcome to Ziit's documentation
 icon: BookOpen
 ---
 
-import MdiDocker from '~icons/mdi/docker';
-import MdiGithub from '~icons/mdi/github';
+import { ContainerIcon, BlocksIcon, ImportIcon } from "lucide-react";
 
 Welcome to **Ziit's Documentation** Here, you'll find everything you need to get started with self-hosting or improve your experience. Find out how Ziit will make your code time tracking much more controlled, private and customizable.
 
 <Cards cols={2}>
-  <Card 
-    icon={<MdiGithub />} 
-    title="Github OAuth App" 
-    href="/deploy/github-oauth-app" 
-    description="Create a Github OAuth App" 
+  <Card
+    title="Deploy"
+    href="/deploy"
+    description="Learn how to self-host Ziit"
+    icon={<ContainerIcon />}
   />
-  <Card 
-    icon={<MdiDocker />} 
-    title="Docker Compose" 
-    href="/deploy/docker-compose" 
-    description="Deploy Ziit with docker compose" 
+  <Card
+    title="Extensions"
+    href="/extensions"
+    description="IDE extensions for time tracking"
+    icon={<BlocksIcon />}
+  />
+  <Card
+    title="Wakatime/Wakapi Import"
+    href="/wakatime"
+    description="Import data from Wakatime/Wakapi"
+    icon={<ImportIcon />}
   />
 </Cards>

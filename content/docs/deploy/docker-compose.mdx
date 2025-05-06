@@ -1,34 +1,42 @@
 ---
 title: Docker Compose
-description: How to run Ziit using docker compose
-icon: MdiDocker
 ---
 
-The easiest way to run Ziit is using [Docker Compose](https://github.com/0PandaDEV/Ziit/blob/main/docker-compose.yml).
+To get started download the [docker-compose.yml](https://github.com/0PandaDEV/Ziit/blob/main/docker-compose.yml) file from the github repository.
 
-1. **Configure Docker Compose:**
-   Edit the environment variables in the `docker-compose.yml` file to set your configuration values:
+## Configure Docker Compose
 
-   | Environment Variable      | Description                      | Example                                                    |
-   | ------------------------- | -------------------------------- | ---------------------------------------------------------- |
-   | NUXT_DATABASE_URL         | Database connection string       | postgresql://postgres:root@postgres:5432/ziit              |
-   | NUXT_PASETO_KEY           | PASTEO local key                 | (Generate with `echo k4.local.$(openssl rand -base64 32)`) |
-   | NUXT_GITHUB_CLIENT_ID     | GitHub OAuth client ID           | your_github_client_id                                      |
-   | NUXT_GITHUB_CLIENT_SECRET | GitHub OAuth client secret       | your_github_client_secret                                  |
-   | NUXT_GITHUB_REDIRECT_URI  | GitHub OAuth redirect URL        | https://ziit.exmaple.com/api/auth/github/callback          |
-   | NUXT_HOST                 | Domain where Ziit will be hosted | ziit.exmaple.com                                           |
-   | NUXT_DISABLE_REGISTRATION | Disable user registration        | false                                                      |
+Edit the environment variables in the `docker-compose.yml` file to set your configuration values:
 
-2. **Build and Start Containers:**
+| Environment Variable      | Description                      | Example                                                    |
+| ------------------------- | -------------------------------- | ---------------------------------------------------------- |
+| NUXT_DATABASE_URL         | Database connection string       | postgresql://postgres:root@postgres:5432/ziit              |
+| NUXT_PASETO_KEY           | PASTEO local key                 | (Generate with `echo k4.local.$(openssl rand -base64 32)`) |
+| NUXT_GITHUB_CLIENT_ID     | GitHub OAuth client ID           | your_github_client_id from the steps earlier               |
+| NUXT_GITHUB_CLIENT_SECRET | GitHub OAuth client secret       | your_github_client_secret from the steps earlier           |
+| NUXT_GITHUB_REDIRECT_URI  | GitHub OAuth redirect URL        | https://ziit.exmaple.com/api/auth/github/callback          |
+| NUXT_HOST                 | Domain where Ziit will be hosted | ziit.exmaple.com                                           |
+| NUXT_DISABLE_REGISTRATION | Disable user registration        | false                                                      |
 
-   ```bash
-   docker compose up -d
-   ```
+<Callout type="warn">
+  Be sure to replace the example values with your actual configuration details
+  before proceeding.
+</Callout>
 
-   The application will be available at `http://localhost:3000` (or your configured host/port).
+## Build and Start Containers
 
-3. **Stop Containers:**
+Run the following command in your terminal:
 
-   ```bash
-   docker compose down
-   ```
+```bash title="Start Docker Compose"
+docker compose up -d
+```
+
+The application will be available at `http://localhost:3000` (or your configured host/port).
+
+## Stop Containers
+
+When needed, you can stop the containers with:
+
+```bash title="Stop Docker Compose"
+docker compose down
+```
