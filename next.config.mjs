@@ -1,5 +1,4 @@
 import { createMDX } from "fumadocs-mdx/next";
-import IconsPlugin from "unplugin-icons/webpack";
 
 const withMDX = createMDX();
 
@@ -16,13 +15,6 @@ const finalConfig = {
     if (typeof mdxConfig.webpack === "function") {
       config = mdxConfig.webpack(config, options);
     }
-
-    config.plugins.push(
-      IconsPlugin({
-        compiler: "jsx",
-        jsx: "react",
-      })
-    );
 
     return config;
   },
