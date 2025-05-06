@@ -23,8 +23,7 @@ export default function Layout({ children }: { children: ReactNode }) {
             options: {
               type: "static",
             },
-          }}
-          theme={{ enabled: false }}>
+          }}>
           {children}
         </RootProvider>
       </body>
