@@ -1,4 +1,5 @@
 {
   "name": "API",
-  "icon": "ChevronsLeftRightEllipsis"
+  "icon": "ChevronsLeftRightEllipsis",
+  "defaultOpen": true
 }
