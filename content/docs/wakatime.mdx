@@ -1,5 +1,70 @@
 ---
-title: Wakatime/Wakapi Import
-description: How to import data from Wakatime/Wakapi
+title: Time Tracking Data Import
 icon: Import
 ---
+
+import { Callout } from "fumadocs-ui/components/callout";
+import { Steps, Step } from "fumadocs-ui/components/steps";
+import Image from "next/image";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+
+Ziit allows you to import your existing coding activity data from Wakatime or WakAPI. This guide will walk you through the process.
+
+## Importing Data
+
+You can import data from either WakaTime or WakAPI.
+
+<Steps>
+
+<Step>
+### Choose Your Data Source
+
+In your Ziit settings, navigate to the "Import Data" section. You will see options to import from WakaTime or WakAPI.
+
+Select the service you want to import from.
+
+</Step>
+
+<Step>
+
+### Provide Required Information
+
+<Tabs items={["WakaTime", "WakAPI"]}>
+  <Tab value="WakaTime">
+    To export your wakatime data go to https://wakatime.com/settings/account and
+    search for `Export my code stats...` then select `Heartbeats` **NOT** Daily
+    totals. Wait for it to finish exporting and download the file which should
+    give you a JSON.
+  </Tab>
+  <Tab value="WakAPI">
+    1. **Enter API Key:** Provide your WakAPI API Key. Can be found in the top
+    right corner when clicking on your account. 2. **Enter Instance URL:** Enter
+    the URL of your WakAPI instance (e.g., `https://wakapi.dev`).
+  </Tab>
+</Tabs>
+
+</Step>
+
+<Step>
+
+### Start Import
+
+Once you have provided the necessary information or uploaded your data file, click the "Import" button. Ziit will begin processing your data.
+
+<Callout title="Note" type="info">
+  The import process may take some time depending on the amount of data being
+  imported. You can leave the page or reload it will continue in the background.
+</Callout>
+
+</Step>
+
+</Steps>
+
+---
+
+## Troubleshooting
+
+If you encounter any issues during the import process:
+
+- **Double-check API Keys and URLs:** Ensure that your API keys and instance URLs are correct for WakAPI imports.
+- **Verify Data File:** For WakaTime, make sure you have downloaded the correct "Heartbeats" data export.
