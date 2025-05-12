@@ -2,6 +2,9 @@
 title: Visual Studio Code
 ---
 
+import { Steps, Step } from "fumadocs-ui/components/steps";
+import { Callout } from "fumadocs-ui/components/callout";
+
 The Visual Studio Code extension allows you to track your coding time directly in Visual Studio Code, sending data to your Ziit instance of choice.
 
 ## Features
@@ -26,50 +29,51 @@ You can also install it directly in Visual Studio Code:
 
 1. Open Extensions panel (`Ctrl+Shift+X` / `Cmd+Shift+X`)
 2. Search for "Ziit"
-3. Click **Install**
+3. Click Install
 
 ---
 
 ## Setup
 
-### Step 1: Install the Extension
-
+<Steps>
+<Step>
 Install the Ziit extension from the Visual Studio Code marketplace as described above.
-
-### Step 2: Configure Your Ziit Instance
+</Step>
+<Step>
+### Configure Your Ziit Instance
 
 <Callout title="Info" type="info">
   Only change this if you are self-hosting your own Ziit instnace.
 </Callout>
 
 1. Open the command palette:
-
    - macOS: `Cmd + Shift + P`
    - Windows/Linux: `Ctrl + Shift + P`
-
 2. Type "Ziit: Set Instance" and press Enter
-
 3. Paste your Ziit instance URL
 
-### Step 3: Set Your API Key
+</Step>
+<Step>
+
+### Set Your API Key
 
 1. Open the command palette:
-
    - macOS: `Cmd + Shift + P`
    - Windows/Linux: `Ctrl + Shift + P`
-
 2. Type "Ziit: Set API Key" and press Enter
-
 3. Paste your API key
 
 <Callout title="Note" type="warn">
-  Keep your API key secure. You can find your API key in your Ziit profile
-  settings.
+  Keep your API key secure. You can find your API key in your Ziit profile settings.
 </Callout>
-
-### Step 4: Start Coding
+</Step>
+<Step>
+### Start Coding
 
 Begin coding, and your time will be tracked automatically!
+
+</Step>
+</Steps>
 
 ---
 
