@@ -2,7 +2,9 @@ import * as OpenAPI from "fumadocs-openapi";
 
 export async function generateDocs() {
   await OpenAPI.generateFiles({
-    input: ["./scripts/api.yaml"],
+    input: [
+      "https://raw.githubusercontent.com/0PandaDEV/Ziit/refs/heads/main/public/openapi.yaml",
+    ],
     output: "./content/docs",
     per: "operation",
   });
