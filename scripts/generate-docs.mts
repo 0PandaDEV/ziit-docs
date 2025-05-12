@@ -2,10 +2,9 @@ import * as OpenAPI from "fumadocs-openapi";
 
 export async function generateDocs() {
   await OpenAPI.generateFiles({
-    input: ["https://docs.ziit.app/openapi.yml"],
+    input: ["./scripts/api.yaml"],
     output: "./content/docs",
-    groupBy: "none",
-    name: () => "index",
+    per: "operation",
   });
 }
 
