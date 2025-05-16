@@ -1,0 +1,78 @@
+---
+title: JetBrains IDEs
+---
+
+import { Steps, Step } from "fumadocs-ui/components/steps";
+import { Callout } from "fumadocs-ui/components/callout";
+
+The JetBrains IDEs extension allows you to track your coding time directly in your JetBrains IDE, sending data to your Ziit instance of choice.
+
+## Features
+
+- **Automatic time tracking** while you code
+- Tracks **projects**, **languages**, **operating system**, and **git branch** information
+- **Seamless integration** with your Ziit dashboard
+- **Privacy-focused** - your data is only sent to your chosen Ziit instance
+
+---
+
+## Installation
+
+The Ziit JetBrains IDEs extension is available on:
+
+| Store                                                                                                         |
+| ------------------------------------------------------------------------------------------------------------- |
+| [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/your-plugin-id) {/* TODO: Add plugin ID */}     |
+
+You can also install it directly in your JetBrains IDE:
+
+1. Open Settings/Preferences (File > Settings or JetBrains IDE > Preferences)
+2. Go to Plugins
+3. Search for "Ziit" in the Marketplace tab
+4. Click Install and restart the IDE
+
+---
+
+## Setup
+
+<Steps>
+<Step>
+Install the Ziit extension from the JetBrains Marketplace as described above.
+</Step>
+<Step>
+### Configure Your Ziit Instance
+
+<Callout title="Info" type="info">
+  Only change this if you are self-hosting your own Ziit instnace.
+</Callout>
+
+1. Open Settings/Preferences
+2. Navigate to Tools > Ziit Configuration
+3. Enter your Ziit instance URL in the "Instance URL" field
+
+</Step>
+<Step>
+
+### Set Your API Key
+
+1. Open Settings/Preferences
+2. Navigate to Tools > Ziit Configuration
+3. Paste your API key in the "API Key" field
+
+<Callout title="Note" type="warn">
+  Keep your API key secure. You can find your API key in your Ziit profile settings.
+</Callout>
+</Step>
+<Step>
+### Start Coding
+
+Begin coding, and your time will be tracked automatically!
+
+</Step>
+</Steps>
+
+---
+
+## GitHub Repository
+
+The extension is open source. For more information, check the [GitHub repository](https://github.com/0PandaDEV/ziit-jetbrains).
