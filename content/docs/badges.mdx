@@ -1,0 +1,106 @@
+---
+title: Badges
+icon: Tag
+---
+
+import { Callout } from "fumadocs-ui/components/callout";
+import { Steps, Step } from "fumadocs-ui/components/steps";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+
+Ziit allows you to display your coding activity using customizable badges that can be embedded on your profile, README, or website. These badges show your coding time statistics in a visual format.
+
+## Badge Structure
+
+The badge URL follows this pattern:
+
+```
+https://ziit.app/api/public/badge/:userId/:project/:timeRange/:color/:labelText?
+```
+
+### Parameters
+
+| Parameter   | Description                            | Default    |
+| ----------- | -------------------------------------- | ---------- |
+| `userId`    | Your Ziit user ID                      | Required   |
+| `project`   | Project name or "all" for all projects | "all"      |
+| `timeRange` | Time period to display stats for       | "all-time" |
+| `color`     | Badge color                            | "blue"     |
+| `labelText` | Text for the badge label               | "Ziit"     |
+
+## Usage Examples
+
+### Basic Badge
+
+This badge shows your total coding time across all projects:
+
+```
+![Ziit](https://ziit.app/api/public/badge/cm98il90n0000o52c3my0bf5p)
+```
+
+### Project-Specific Badge
+
+Display coding time for a specific project:
+
+```
+![Ziit](https://ziit.app/api/public/badge/cm98il90n0000o52c3my0bf5p/ziit)
+```
+
+### Custom Time Range
+
+Show coding time for a specific time period:
+
+<Tabs items={["all-time", "today", "week", "month", "year"]}>
+  <Tab value="all-time">
+    ```markdown
+    https://ziit.app/api/public/badge/cm98il90n0000o52c3my0bf5p/all/all-time 
+    ```
+  </Tab>
+  <Tab value="today">
+    ```markdown
+    https://ziit.app/api/public/badge/cm98il90n0000o52c3my0bf5p/all/today 
+    ```
+  </Tab>
+  <Tab value="week">
+    ```markdown
+    https://ziit.app/api/public/badge/cm98il90n0000o52c3my0bf5p/all/week 
+    ```
+  </Tab>
+  <Tab value="month">
+    ```markdown
+    https://ziit.app/api/public/badge/cm98il90n0000o52c3my0bf5p/all/month 
+    ```
+  </Tab>
+  <Tab value="year">
+    ```markdown
+    https://ziit.app/api/public/badge/cm98il90n0000o52c3my0bf5p/all/year 
+    ```
+  </Tab>
+</Tabs>
+
+### Custom Style
+
+Customize the badge appearance:
+
+```
+https://ziit.app/api/public/badge/cm98il90n0000o52c3my0bf5p/all/all-time/green/Coding Time
+```
+
+<Callout title="Available Colors" type="info">
+  Standard colors include: blue, green, red, orange, yellow, purple, and black.
+  You can also use hex color codes (without the #).
+</Callout>
+
+## Query Parameters
+
+You can further customize badges using query parameters:
+
+| Parameter | Description | Values                      |
+| --------- | ----------- | --------------------------- |
+| `style`   | Badge style | "classic" (default), "flat" |
+| `icon`    | Icon URL    | Any valid URL               |
+
+Example with query parameters:
+
+```
+https://ziit.app/api/public/badge/cm98il90n0000o52c3my0bf5p?style=flat&icon=https://example.com/icon.svg
+```
