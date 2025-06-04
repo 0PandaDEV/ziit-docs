@@ -5,6 +5,7 @@ const withMDX = createMDX();
 /** @type {import('next').NextConfig} */
 const baseConfig = {
   reactStrictMode: true,
+  devIndicators: false,
 };
 
 const mdxConfig = withMDX(baseConfig);
