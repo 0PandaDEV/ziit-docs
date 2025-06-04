@@ -11,7 +11,6 @@ import { ImageZoom } from "fumadocs-ui/components/image-zoom";
 import { CodeBlock, Pre } from "fumadocs-ui/components/codeblock";
 import { metadataImage } from "@/lib/metadata";
 import { APIPage } from "fumadocs-openapi/ui";
-import { GithubIcon, MoveUpRight } from "lucide-react";
 
 export default async function Page(props: {
   params: Promise<{ slug?: string[] }>;
@@ -22,26 +21,12 @@ export default async function Page(props: {
 
   const MDXContent = page.data.body;
 
-  const footer = (
-    <a
-      href={`https://github.com/0pandadev/ziit-docs/blob/main/content/docs/${page.file.path}`}
-      target="_blank"
-      rel="noreferrer noopener"
-      className="flex items-center gap-x-2 text-stone-700 hover:text-stone-600 dark:text-stone-400 dark:hover:text-stone-300">
-      <GithubIcon className="size-3.5" />
-      <span className="text-xs flex items-center gap-x-1">
-        Edit on Github <MoveUpRight className="size-3" />
-      </span>
-    </a>
-  );
-
   return (
     <DocsPage
       toc={page.data.toc}
       full={page.data.full}
       tableOfContent={{
         style: "clerk",
-        footer,
       }}>
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
