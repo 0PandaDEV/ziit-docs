@@ -38,15 +38,7 @@ aside {
 
 aside a[data-active="true"] {
   color: var(--color-fd-foreground) !important;
-  background-color: var(--color-fd-accent) !important;
-}
-
-.prose :where(code):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-  font-size: 14px;
-}
-
-g.main:has(> g.plot) > rect {
-  display: none;
+  background-color: var(--color-fd-muted) !important;
 }
 
 video {
@@ -59,8 +51,7 @@ aside#nd-sidebar div.flex.flex-col.border-t.px-4.py-3 {
 
 @layer utilities {
   .prose {
-    & a[href*="github.com"][target="_blank"],
-    & a[class*="github"] {
+    & a.flex.flex-col.gap-1\.5.p-2.rounded-lg.text-sm {
       background-color: var(--color-fd-card);
       transition: background-color 0.2s ease;
       border: 1px solid var(--color-fd-border);
@@ -70,8 +61,8 @@ aside#nd-sidebar div.flex.flex-col.border-t.px-4.py-3 {
         margin: 0;
       }
     }
-    & a[href*="github.com"][target="_blank"]:hover,
-    & a[class*="github"]:hover {
+
+    & a.flex.flex-col.gap-1\.5.p-2.rounded-lg.text-sm:hover {
       background-color: color-mix(in oklab, var(--color-fd-accent) 80%, transparent);
     }
   }
