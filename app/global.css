@@ -12,7 +12,7 @@
   --color-fd-card-foreground: #e6e6e6;
   --color-fd-muted: #d1cfc00b;
   --color-fd-muted-foreground: #a6a6a6;
-  --color-fd-secondary: #2B2B2B;
+  --color-fd-secondary: #2b2b2b;
   --color-fd-secondary-foreground: #a6a6a6;
   --color-fd-border: #ffffff1a;
 }
@@ -27,7 +27,7 @@
   --color-fd-card-foreground: #e6e6e6;
   --color-fd-muted: #d1cfc00b;
   --color-fd-muted-foreground: #a6a6a6;
-  --color-fd-secondary: #2B2B2B;
+  --color-fd-secondary: #2b2b2b;
   --color-fd-secondary-foreground: #a6a6a6;
   --color-fd-border: #ffffff1a;
 }
@@ -55,4 +55,24 @@ video {
 
 aside#nd-sidebar div.flex.flex-col.border-t.px-4.py-3 {
   display: none !important;
+}
+
+@layer utilities {
+  .prose {
+    & a[href*="github.com"][target="_blank"],
+    & a[class*="github"] {
+      background-color: var(--color-fd-card);
+      transition: background-color 0.2s ease;
+      border: 1px solid var(--color-fd-border);
+      text-decoration: none;
+
+      p {
+        margin: 0;
+      }
+    }
+    & a[href*="github.com"][target="_blank"]:hover,
+    & a[class*="github"]:hover {
+      background-color: color-mix(in oklab, var(--color-fd-accent) 80%, transparent);
+    }
+  }
 }
