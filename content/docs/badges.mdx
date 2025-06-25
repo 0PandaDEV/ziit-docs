@@ -35,7 +35,7 @@ https://ziit.app/api/public/badge/:userId/:project/:timeRange/:color/:labelText?
 This badge shows your total coding time across all projects:
 
 ```
-![Ziit](https://ziit.app/api/public/badge/cm98il90n0000o52c3my0bf5p)
+https://ziit.app/api/public/badge/cm98il90n0000o52c3my0bf5p
 ```
 
 ### Project-Specific Badge
@@ -43,37 +43,74 @@ This badge shows your total coding time across all projects:
 Display coding time for a specific project:
 
 ```
-![Ziit](https://ziit.app/api/public/badge/cm98il90n0000o52c3my0bf5p/ziit)
+https://ziit.app/api/public/badge/cm98il90n0000o52c3my0bf5p/ziit
 ```
 
 ### Custom Time Range
 
 Show coding time for a specific time period:
 
-<Tabs items={["all-time", "today", "week", "month", "year"]}>
+<Tabs
+  items={[
+    "all-time",
+    "today",
+    "yesterday",
+    "week",
+    "month",
+    "last-90-days",
+    "month-to-date",
+    "last-month",
+    "year-to-date",
+    "last-12-months",
+  ]}>
   <Tab value="all-time">
     ```markdown
-    https://ziit.app/api/public/badge/cm98il90n0000o52c3my0bf5p/all/all-time 
+    https://ziit.app/api/public/badge/cm98il90n0000o52c3my0bf5p/all/all-time
     ```
   </Tab>
   <Tab value="today">
     ```markdown
-    https://ziit.app/api/public/badge/cm98il90n0000o52c3my0bf5p/all/today 
+    https://ziit.app/api/public/badge/cm98il90n0000o52c3my0bf5p/all/today
+    ```
+  </Tab>
+  <Tab value="yesterday">
+    ```markdown
+    https://ziit.app/api/public/badge/cm98il90n0000o52c3my0bf5p/all/yesterday
     ```
   </Tab>
   <Tab value="week">
     ```markdown
-    https://ziit.app/api/public/badge/cm98il90n0000o52c3my0bf5p/all/week 
+    https://ziit.app/api/public/badge/cm98il90n0000o52c3my0bf5p/all/week
     ```
   </Tab>
   <Tab value="month">
     ```markdown
-    https://ziit.app/api/public/badge/cm98il90n0000o52c3my0bf5p/all/month 
+    https://ziit.app/api/public/badge/cm98il90n0000o52c3my0bf5p/all/month
     ```
   </Tab>
-  <Tab value="year">
+  <Tab value="last-90-days">
     ```markdown
-    https://ziit.app/api/public/badge/cm98il90n0000o52c3my0bf5p/all/year 
+    https://ziit.app/api/public/badge/cm98il90n0000o52c3my0bf5p/all/last-90-days
+    ```
+  </Tab>
+  <Tab value="month-to-date">
+    ```markdown
+    https://ziit.app/api/public/badge/cm98il90n0000o52c3my0bf5p/all/month-to-date
+    ```
+  </Tab>
+  <Tab value="last-month">
+    ```markdown
+    https://ziit.app/api/public/badge/cm98il90n0000o52c3my0bf5p/all/last-month
+    ```
+  </Tab>
+  <Tab value="year-to-date">
+    ```markdown
+    https://ziit.app/api/public/badge/cm98il90n0000o52c3my0bf5p/all/year-to-date
+    ```
+  </Tab>
+  <Tab value="last-12-months">
+    ```markdown
+    https://ziit.app/api/public/badge/cm98il90n0000o52c3my0bf5p/all/last-12-months
     ```
   </Tab>
 </Tabs>
@@ -95,10 +132,10 @@ https://ziit.app/api/public/badge/cm98il90n0000o52c3my0bf5p/all/all-time/green/C
 
 You can further customize badges using query parameters:
 
-| Parameter | Description | Values                      |
-| --------- | ----------- | --------------------------- |
-| `style`   | Badge style | "classic" (default), "flat" |
-| `icon`    | Icon URL    | Any valid URL               |
+| Parameter | Description | Values                                      |
+| --------- | ----------- | ------------------------------------------- |
+| `style`   | Badge style | "classic" (default), "flat"                 |
+| `icon`    | Icon URL    | Direct URL to an image (e.g. SVG, PNG, JPG) |
 
 Example with query parameters:
 
