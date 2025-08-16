@@ -16,8 +16,6 @@ export default function Layout({ children }: { children: ReactNode }) {
           src="https://rybbit.pandadev.net/api/script.js"
           defer
           data-site-id="2"
-          data-session-replay="true"
-          data-track-errors="true"
         />
       </head>
       <body className="flex flex-col min-h-screen">
