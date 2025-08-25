@@ -1,4 +1,8 @@
 {
   "name": "Extensions",
-  "icon": "Blocks"
+  "icon": "Blocks",
+  "pages": [
+    "vscode",
+    "jetbrains"
+  ]
 }
