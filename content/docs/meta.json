@@ -7,11 +7,11 @@
     "---Getting Started---",
     "deploy",
     "extensions",
-    "wakatime",
+    "data-import",
     "badges",
     "---Developers---",
     "contribute",
-    "extension-spec-sheet",
-    "api"
+    "api",
+    "extension-spec-sheet"
   ]
 }
