@@ -1,0 +1,297 @@
+---
+title: Extension Sheet
+description: A spec sheet on how to building IDE extensions for Ziit.
+icon: Layers
+---
+
+import { Steps, Step } from "fumadocs-ui/components/steps";
+
+This is a detailed specification sheet for building IDE extensions that integrate with Ziit. It outlines the necessary components, API interactions, and best practices to ensure a seamless user experience across different IDEs and editors.
+
+<Steps>
+<Step>
+## Extension Entry Point
+
+The main extension file serves as the activation point and coordinates all other components:
+
+```typescript
+// Main activation function
+export async function activate(context: ExtensionContext) {
+  await initializeAndSyncConfig();
+
+  const statusBarManager = new StatusBarManager();
+  const heartbeatManager = new HeartbeatManager(context, statusBarManager);
+
+  // Register commands and event listeners
+}
+```
+
+**Key Responsibilities:**
+- Initialize configuration sync (see [Configuration Management](#configuration-management))
+- Instantiate core managers (including [Status Bar Integration](#status-bar-integration) if supported)
+- Register commands and event listeners (detailed in [Event System](#event-system))
+- Handle extension lifecycle
+</Step>
+
+<Step>
+## Configuration Management
+
+Extensions must handle multiple configuration sources with priority ordering:
+
+**Configuration Priority (highest to lowest):**
+1. Workspace-specific settings
+2. Global IDE user settings
+3. Home directory config file (`~/.ziit.json`)
+4. Default values
+
+**Required Configuration Fields:**
+- `apiKey`: Authentication token for Ziit API
+- `baseUrl`: Ziit server instance URL (default: "https://ziit.app")
+
+**Configuration Migration:**
+Extensions should migrate legacy config files (`.ziit.cfg`) to the new JSON format automatically.
+
+For user-facing configuration commands, see [Commands and UI](#commands-and-ui).
+</Step>
+
+<Step>
+## Heartbeat System
+
+The heartbeat system is the core of activity tracking:
+
+### Heartbeat Structure
+This structure is used throughout [API Integration](#api-integration) and [Offline Support](#offline-support):
+```typescript
+interface Heartbeat {
+  timestamp: string;        // ISO 8601 timestamp
+  project?: string;         // Project name (from git or workspace)
+  language?: string;        // Programming language
+  file?: string;           // Current file name
+  branch?: string;         // Git branch name
+  editor: string;          // IDE/Editor name
+  os: string;             // Operating system
+}
+```
+
+### Triggering Conditions
+Heartbeats are sent when:
+- File changes (immediate)
+- Regular interval (default: 2 minutes)
+- File saves (immediate)
+- Editor focus changes (immediate)
+
+For detailed API endpoint information, see [API Integration](#api-integration).
+
+### Activity Detection
+Activity detection works in conjunction with [Status Bar Integration](#status-bar-integration) for visual feedback:
+Extensions must implement user activity detection:
+- **Active State**: Window focused AND recent user interaction (< 15 minutes)
+- **Inactive State**: Window unfocused OR no interaction for 15+ minutes
+- **Activity Events**: Typing, file changes, saves, editor switches (see [Event System](#event-system) for implementation details)
+</Step>
+
+<Step>
+## Offline Support
+
+Extensions must gracefully handle network connectivity issues:
+
+### Offline Queue
+- Store failed heartbeats in `~/.ziit/offline_heartbeats.json`
+- Automatically sync when connection is restored
+- Batch sync in groups of 1000 heartbeats (see [API Integration](#api-integration) for batch endpoint)
+- Preserve timestamp accuracy for offline periods
+
+### Status Indicators
+- Online: Normal operation
+- Offline: Show sync indicator, queue heartbeats locally (see [Status Bar Integration](#status-bar-integration) for UI implementation)
+- Invalid API Key: Show error state, halt heartbeat transmission
+</Step>
+
+<Step>
+## Project Detection
+
+Extensions should detect projects in the following priority order:
+
+1. **Git Repository**: Extract project name from remote URL or repository directory name
+2. **Workspace Folder**: Use the workspace/folder name as fallback
+3. **File Path**: Extract from file path structure if no workspace context
+
+Project information is included in every heartbeat (see [Heartbeat System](#heartbeat-system)).
+
+### Git Integration
+```typescript
+// Example git integration (adapt to your IDE's git API)
+const gitExtension = ide.extensions.getExtension("git");
+const git = gitExtension.getAPI();
+const repository = git.getRepository(fileUri);
+const projectName = extractNameFromRemoteUrl(repository.remotes[0].fetchUrl);
+```
+
+Note: Git extension activation is also covered in [Event System](#event-system) for proper event handling.
+</Step>
+
+<Step>
+## Status Bar Integration
+
+Extensions should provide visual feedback through the IDE's status bar (if supported):
+
+### Status States
+- **Normal**: `⏰ X hrs Y mins` - Shows today's tracked time
+- **Offline**: `🔄 X hrs Y mins (offline)` - Indicates offline mode
+- **Unconfigured**: `❌ Unconfigured` - Missing/invalid API key
+
+### Interactive Features
+- Click to open Ziit dashboard (via [Commands and UI](#commands-and-ui))
+- Real-time time updates (every minute)
+- Visual feedback on heartbeat transmission (coordinated with [Heartbeat System](#heartbeat-system))
+</Step>
+
+<Step>
+## API Integration
+
+Extensions communicate with Ziit servers through REST APIs:
+
+### Authentication
+All API requests must include:
+```http
+Authorization: Bearer {apiKey}
+```
+
+### Core Endpoints
+
+**Send Heartbeat:**
+```http
+POST /api/external/heartbeats
+Content-Type: application/json
+
+{
+  "timestamp": "2024-01-15T10:30:00.000Z",
+  "project": "my-project",
+  "language": "typescript",
+  "file": "extension.ts",
+  "branch": "main",
+  "editor": "Your IDE Name",
+  "os": "macOS"
+}
+```
+
+**Batch Sync (for offline heartbeats):**
+```http
+POST /api/external/batch
+Content-Type: application/json
+
+[
+  { /* heartbeat 1 */ },
+  { /* heartbeat 2 */ },
+  // ... up to 1000 heartbeats
+]
+```
+
+**Daily Summary:**
+```http
+GET /api/external/stats?timeRange=today&midnightOffsetSeconds={timezoneOffset}
+
+Response:
+{
+  "summaries": [{
+    "date": "2024-01-15",
+    "totalSeconds": 28800,
+    "projects": { "my-project": 28800 },
+    "languages": { "typescript": 20000, "javascript": 8800 },
+    "editors": { "Your IDE Name": 28800 },
+    "os": { "macOS": 28800 }
+  }]
+}
+```
+
+All API calls must implement proper [Error Handling](#error-handling).
+</Step>
+
+<Step>
+## Error Handling
+
+Extensions must implement robust error handling:
+
+### Network Errors
+- Detect connectivity issues
+- Switch to offline mode (see [Offline Support](#offline-support))
+- Queue heartbeats locally
+- Retry with exponential backoff
+
+### Authentication Errors
+- Detect 401 responses
+- Update UI to show configuration needed (see [Status Bar Integration](#status-bar-integration) for error display)
+- Halt heartbeat transmission until resolved
+
+### Validation Errors
+- Validate heartbeat data before transmission
+- Skip invalid heartbeats (e.g., missing project)
+- Log errors for debugging
+</Step>
+
+<Step>
+## Event System
+
+Extensions must listen to relevant IDE events:
+
+### Required Event Listeners
+- **Document Changes**: Track active file modifications
+- **Active Editor Changes**: Detect file switches
+- **Document Saves**: Capture explicit save actions
+- **Window Focus Changes**: Handle IDE focus/unfocus
+- **Configuration Changes**: React to settings updates
+
+### Event Debouncing
+Implement appropriate debouncing to avoid excessive API calls:
+- Document changes: Use heartbeat interval (2 minutes)
+- File switches: Immediate (no debouncing)
+- Saves: Immediate (no debouncing)
+</Step>
+
+<Step>
+## Commands and UI
+
+Extensions should register these commands:
+
+- `ziit.setApiKey`: Configure API key (with password input)
+- `ziit.setBaseUrl`: Configure server instance URL
+- `ziit.openDashboard`: Open Ziit web dashboard
+- `ziit.showOutput`: Display extension logs
+
+These commands should be accessible through your IDE's command palette or menu system.
+</Step>
+</Steps>
+
+## Implementation Checklist
+
+### Core Extension Setup
+- Extension activation and deactivation
+- Configuration management with migration
+- Event listener registration
+- Command registration
+
+
+### Activity Tracking System
+- Heartbeat creation and transmission
+- Offline queue with persistence
+- Project detection (git + workspace)
+- API integration with authentication
+
+
+### User Interface Components
+- Status bar integration (if supported by IDE)
+- Error handling and recovery
+- Command palette integration
+
+
+## Conclusion
+
+Building a robust Ziit IDE extension requires careful attention to user experience and reliability. The extension must gracefully handle various edge cases while providing accurate time tracking and meaningful insights into developer productivity.
+
+Key success factors:
+- **Reliability**: Handle network issues and edge cases gracefully
+- **User Experience**: Intuitive setup and clear status indicators
+- **Accuracy**: Precise activity detection and time tracking
+- **Cross-Platform**: Work consistently across different operating systems
+
+By following this specification, developers can create high-quality Ziit extensions for any IDE that provide value to users while maintaining the reliability and performance standards expected in professional development environments.
