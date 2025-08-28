@@ -3,6 +3,8 @@
   "icon": "Blocks",
   "pages": [
     "vscode",
-    "jetbrains"
+    "jetbrains",
+    "neovim",
+    "zed"
   ]
 }
