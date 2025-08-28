@@ -4,7 +4,14 @@ description: Privacy-focused, self-hosted coding time tracker
 icon: BookOpen
 ---
 
-import { ContainerIcon, BlocksIcon, ImportIcon, TagsIcon } from "lucide-react";
+import {
+  ContainerIcon,
+  BlocksIcon,
+  ImportIcon,
+  TagsIcon,
+  GitMergeIcon,
+  LayersIcon,
+} from "lucide-react";
 
 Welcome to **Ziit's Documentation** Here, you'll find everything you need to get started with self-hosting or improve your experience. Find out how Ziit will make your code time tracking much more controlled, private and customizable.
 
@@ -33,14 +40,24 @@ Welcome to **Ziit's Documentation** Here, you'll find everything you need to get
     description="Create badges to showcase in your README"
     icon={<TagsIcon />}
   />
+  <Card
+    title="Contribute"
+    href="/contributing"
+    description="Learn how to contribute to Ziit"
+    icon={<GitMergeIcon />}
+  />
+  <Card
+    title="Extension Spec Sheet"
+    href="/extensions-spec-sheet"
+    description="Learn how to create your own Ziit extension"
+    icon={<LayersIcon />}
+  />
 </Cards>
 
-<iframe 
-  src="https://status.ziit.app/badge?theme=dark" 
-  width="250" 
-  height="30" 
-  frameBorder="0" 
-  scrolling="no" 
+<iframe
+  src="https://status.ziit.app/badge?theme=dark"
+  width="250"
+  height="30"
   className="status-badge"
-  style={{colorScheme: "normal"}}
+  style={{ colorScheme: "normal" }}
 />
