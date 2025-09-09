@@ -12,8 +12,6 @@ import { CodeBlock, Pre } from "fumadocs-ui/components/codeblock";
 import { metadataImage } from "@/lib/metadata";
 import { APIPage } from "fumadocs-openapi/ui";
 
-export const runtime = "edge";
-
 export default async function Page(props: {
   params: Promise<{ slug?: string[] }>;
 }) {

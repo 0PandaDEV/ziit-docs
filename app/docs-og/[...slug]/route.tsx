@@ -1,8 +1,6 @@
 import { metadataImage } from "@/lib/metadata";
 import { ImageResponse } from "next/og";
 
-export const runtime = "edge";
-
 export const GET = metadataImage.createAPI(async (page) => {
   const size = {
     width: 1200,
