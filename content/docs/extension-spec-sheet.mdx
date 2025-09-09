@@ -44,8 +44,10 @@ Extensions must handle multiple configuration sources with priority ordering:
 
 1. Workspace-specific settings (If supported by IDE)
 2. Global IDE user settings
-3. Home directory config file (`~/.ziit.json`)
+3. Home directory config file (`~/.config/ziit/config.json`)
 4. Default values
+
+**Migration: Migrate from the old format of configuration file (`~/.ziit.json`) to the new format (`~/.config/ziit/config.json`) on first run.**
 
 **Required Configuration Fields:**
 
@@ -106,10 +108,12 @@ Extensions must gracefully handle network connectivity issues:
 
 ### Offline Queue
 
-- Store failed heartbeats in `~/.ziit/offline_heartbeats.json`
+- Store failed heartbeats in `~/.config/ziit/offline_heartbeats.json`
 - Automatically sync when connection is restored
 - Batch sync in groups of 1000 heartbeats (see [API Integration](#api-integration) and [Batch Endpoint](/api/batch) for batch endpoint details)
 - Preserve timestamp accuracy for offline periods
+
+**Migration: Migrate from the old format of configuration file (`~/.ziit/offline_heartbeats.json`) to the new format (`~/.config/ziit/offline_heartbeats.json`) on first run.**
 
 ### Status Indicators
 
