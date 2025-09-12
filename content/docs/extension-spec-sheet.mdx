@@ -44,10 +44,10 @@ Extensions must handle multiple configuration sources with priority ordering:
 
 1. Workspace-specific settings (If supported by IDE)
 2. Global IDE user settings
-3. Home directory config file (`~/.config/ziit/config.json`)
+3. XDG config file (`$XDG_CONFIG_HOME/ziit/config.json` or `~/.config/ziit/config.json` as fallback)
 4. Default values
 
-**Migration: Migrate from the old format of configuration file (`~/.ziit.json`) to the new format (`~/.config/ziit/config.json`) on first run.**
+**Migration: Automatically migrate from legacy config files (`~/.ziit.json` or `~/.ziit.cfg`) to the XDG-compliant location on first run. Extensions should support both `$XDG_CONFIG_HOME/ziit/config.json` (if XDG_CONFIG_HOME is set) and `~/.config/ziit/config.json` (as fallback).**
 
 **Required Configuration Fields:**
 
@@ -108,12 +108,12 @@ Extensions must gracefully handle network connectivity issues:
 
 ### Offline Queue
 
-- Store failed heartbeats in `~/.config/ziit/offline_heartbeats.json`
+- Store failed heartbeats in XDG-compliant location (`$XDG_CONFIG_HOME/ziit/offline_heartbeats.json` or `~/.config/ziit/offline_heartbeats.json` as fallback)
 - Automatically sync when connection is restored
 - Batch sync in groups of 1000 heartbeats (see [API Integration](#api-integration) and [Batch Endpoint](/api/batch) for batch endpoint details)
 - Preserve timestamp accuracy for offline periods
 
-**Migration: Migrate from the old format of configuration file (`~/.ziit/offline_heartbeats.json`) to the new format (`~/.config/ziit/offline_heartbeats.json`) on first run.**
+**Migration: Automatically migrate offline heartbeats from legacy location (`~/.ziit/offline_heartbeats.json`) to XDG-compliant location on first run. Extensions should clean up empty legacy directories after successful migration.**
 
 ### Status Indicators
 
