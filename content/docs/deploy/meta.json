@@ -2,7 +2,8 @@
   "name": "Deploy",
   "icon": "Container",
   "pages": [
-    "github-oauth-app",
+    "github-oauth",
+    "epilogue-oauth",
     "docker-compose"
   ]
 }

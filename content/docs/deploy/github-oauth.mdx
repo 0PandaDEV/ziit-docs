@@ -1,0 +1,59 @@
+---
+title: Github OAuth
+description: Set up GitHub OAuth authentication
+---
+
+import { Steps, Step } from "fumadocs-ui/components/steps";
+import { Callout } from "fumadocs-ui/components/callout";
+import { Card, Cards } from "fumadocs-ui/components/card";
+
+To enable GitHub authentication for Ziit, you need to create a GitHub OAuth App.
+
+<Steps>
+<Step>
+## Go to GitHub Developer Settings
+
+Navigate to [GitHub Developer Settings](https://github.com/settings/developers) and click on "New OAuth App"
+
+<Cards>
+  <Card 
+    title="GitHub Developer Settings" 
+    href="https://github.com/settings/developers"
+  >
+    Open GitHub Developer Settings
+  </Card>
+</Cards>
+</Step>
+<Step>
+## Register Your OAuth App
+
+Fill in the required fields:
+
+| Field                      | Value                                                                       |
+| -------------------------- | --------------------------------------------------------------------------- |
+| Application name           | Ziit (or your preferred name)                                               |
+| Homepage URL               | Your Ziit instance URL (e.g., https://ziit.example.com)                     |
+| Authorization callback URL | Your callback URL (e.g., https://ziit.example.com/api/auth/github/callback) |
+
+<Callout type="info" title="Callback URL Format">
+  Make sure your callback URL matches exactly with your Ziit instance domain, followed by `/api/auth/github/callback`
+</Callout>
+</Step>
+<Step>
+## Get Your Credentials
+
+After registration, you'll receive a Client ID and can generate a Client Secret:
+
+- Save these values for your Ziit configuration
+- **Important**: Keep your Client Secret secure and never expose it publicly
+
+<Cards>
+  <Card 
+    title="Docker Compose Setup" 
+    href="./docker-compose"
+  >
+    Continue to Docker Compose deployment
+  </Card>
+</Cards>
+</Step>
+</Steps>

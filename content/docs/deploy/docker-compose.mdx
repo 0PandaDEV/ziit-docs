@@ -12,21 +12,29 @@ import { Callout } from "fumadocs-ui/components/callout";
 
 Download the [docker-compose.yml](https://github.com/0PandaDEV/Ziit/blob/main/docker-compose.yml) file from the github repository.
 
+```bash title="Download using CLI"
+curl -o docker-compose.yml https://raw.githubusercontent.com/0PandaDEV/Ziit/refs/heads/main/docker-compose.yml
+```
+
 </Step>
 <Step>
 ## Configure Docker Compose
 
 Edit the environment variables in the `docker-compose.yml` file to set your configuration values:
 
-| Environment Variable      | Description                      | Example                                                    |
-| ------------------------- | -------------------------------- | ---------------------------------------------------------- |
-| NUXT_DATABASE_URL         | Database connection string       | postgresql://postgres:root@postgres:5432/ziit              |
-| NUXT_PASETO_KEY           | PASTEO local key                 | (Generate with `echo k4.local.$(openssl rand -base64 32)`) |
-| NUXT_GITHUB_CLIENT_ID     | GitHub OAuth client ID           | your_github_client_id from the steps earlier               |
-| NUXT_GITHUB_CLIENT_SECRET | GitHub OAuth client secret       | your_github_client_secret from the steps earlier           |
-| NUXT_GITHUB_REDIRECT_URI  | GitHub OAuth redirect URL        | https://ziit.exmaple.com/api/auth/github/callback          |
-| NUXT_HOST                 | Domain where Ziit will be hosted | ziit.exmaple.com                                           |
-| NUXT_DISABLE_REGISTRATION | Disable user registration        | false                                                      |
+| Environment Variable           | Description                              | Example                                                               |
+| ------------------------------ | ---------------------------------------- | --------------------------------------------------------------------- |
+| NUXT_DATABASE_URL              | Database connection string               | postgresql://postgres:CHANGEME@postgres:5432/ziit                    |
+| NUXT_PASETO_KEY                | PASTEO local key                         | (Generate with `echo k4.local.$(openssl rand -base64 32)`)           |
+| NUXT_ADMIN_KEY                 | Password for the admin dashboard         | (Generate with `openssl rand -base64 64`)                            |
+| NUXT_HOST                      | Domain where Ziit will be hosted        | ziit.example.com                                                      |
+| NUXT_DISABLE_REGISTRATION      | Disable user registration                | false                                                                 |
+| NUXT_GITHUB_CLIENT_ID          | GitHub OAuth client ID                   | your_github_client_id                                                 |
+| NUXT_GITHUB_CLIENT_SECRET      | GitHub OAuth client secret              | your_github_client_secret                                             |
+| NUXT_GITHUB_REDIRECT_URI       | GitHub OAuth redirect URL               | http://localhost:3000/api/auth/github/callback                       |
+| NUXT_EPILOGUE_APP_ID           | Epilogue OAuth application ID           | your_epilogue_app_id                                                  |
+| NUXT_EPILOGUE_APP_SECRET       | Epilogue OAuth application secret       | your_epilogue_app_secret                                              |
+| NUXT_EPILOGUE_REDIRECT_URI     | Epilogue OAuth redirect URL             | http://localhost:3000/api/auth/epilogue/callback                     |
 
 <Callout type="warn">
   Be sure to replace the example values with your actual configuration details before proceeding.

@@ -1,26 +1,26 @@
 ---
-title: Github OAuth App
-description: Set up GitHub OAuth authentication
+title: Epilogue OAuth
+description: Set up Epilogue OAuth authentication
 ---
 
 import { Steps, Step } from "fumadocs-ui/components/steps";
 import { Callout } from "fumadocs-ui/components/callout";
 import { Card, Cards } from "fumadocs-ui/components/card";
 
-To enable GitHub authentication for Ziit, you need to create a GitHub OAuth App.
+To enable Epilogue authentication for Ziit, you need to create a Epilogue OAuth App.
 
 <Steps>
 <Step>
-## Go to GitHub Developer Settings
+## Go to the Application Settins
 
-Navigate to [GitHub Developer Settings](https://github.com/settings/developers) and click on "New OAuth App"
+Navigate to [Epilogue Auth Settings](https://auth.epilogue.team/dashboard/) go to "Applications" and click on "New Application"
 
 <Cards>
   <Card 
-    title="GitHub Developer Settings" 
-    href="https://github.com/settings/developers"
+    title="Epilogue Auth Settings" 
+    href="https://auth.epilogue.team/dashboard/"
   >
-    Open GitHub Developer Settings
+    Open Epilogue Auth Settings
   </Card>
 </Cards>
 </Step>
@@ -31,18 +31,22 @@ Fill in the required fields:
 
 | Field                      | Value                                                                       |
 | -------------------------- | --------------------------------------------------------------------------- |
-| Application name           | Ziit (or your preferred name)                                               |
-| Homepage URL               | Your Ziit instance URL (e.g., https://ziit.example.com)                     |
+| Name           | Ziit (or your preferred name)                                               |
 | Authorization callback URL | Your callback URL (e.g., https://ziit.example.com/api/auth/github/callback) |
+| Permissions | Select View Email, View Username and View ID |
+
+<Callout type="warn" title="Permissions">
+  The Permissions have to be set exactly like documented here otherwise auth will fail and throw an error. 
+</Callout>
 
 <Callout type="info" title="Callback URL Format">
-  Make sure your callback URL matches exactly with your Ziit instance domain, followed by `/api/auth/github/callback`
+  Make sure your callback URL matches exactly with your Ziit instance domain, followed by `/api/auth/github/callback`.
 </Callout>
 </Step>
 <Step>
 ## Get Your Credentials
 
-After registration, you'll receive a Client ID and can generate a Client Secret:
+After registration, you'll receive a Application ID and Application Secret:
 
 - Save these values for your Ziit configuration
 - **Important**: Keep your Client Secret secure and never expose it publicly

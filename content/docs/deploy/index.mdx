@@ -3,15 +3,36 @@ title: Deploy
 description: Self-host your own Ziit instance
 ---
 
+import { Card, Cards } from "fumadocs-ui/components/card";
+
 This guide will help you deploy Ziit. For detailed instructions, check out the following pages:
 
-| Guide                                                | Description                                  |
-| ---------------------------------------------------- | -------------------------------------------- |
-| [GitHub OAuth App Setup](./deploy/github-oauth-app)  | Create a GitHub OAuth App for authentication |
-| [Docker Compose Deployment](./deploy/docker-compose) | Deploy Ziit using Docker Compose             |
+## Authentication Provider
 
-## Deployment Overview
+Ziit currently supports these two OAuth providers next to normal email and password accounts. You dont have to use either of them Ziit works just fine with email and password only auth.
 
-1. Set up a GitHub OAuth App to enable authentication
-2. Configure and deploy Ziit using Docker Compose
-3. Access your Ziit instance and start using it
+<Cards>
+  <Card 
+    title="Github OAuth" 
+    href="https://auth.epilogue.team/dashboard/"
+  >
+    Open Epilogue Auth Settings
+  </Card>
+  <Card 
+    title="Epilogue OAuth" 
+    href="https://auth.epilogue.team/dashboard/"
+  >
+    Open Epilogue Auth Settings
+  </Card>
+</Cards>
+
+After getting your credentials from either of the two OAuth providers you can continue to setup the docker compose file.
+
+<Cards>
+  <Card 
+    title="Docker Compose Setup" 
+    href="/deploy/docker-compose"
+  >
+    Continue to Docker Compose deployment
+  </Card>
+</Cards>
